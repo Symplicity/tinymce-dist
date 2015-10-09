@@ -35038,13 +35038,14 @@ define("tinymce/ui/Button", [
 				self.classes.add('btn-has-text');
 			}
 
+			var label = icon;
 			icon = self.settings.icon ? prefix + 'ico ' + prefix + 'i-' + icon : '';
 
 			return (
 				'<div id="' + id + '" class="' + self.classes + '" tabindex="-1" aria-labelledby="' + id + '">' +
 					'<button role="presentation" type="button" tabindex="-1">' +
 						(icon ? '<i class="' + icon + '"' + image + '></i>' : '') +
-						(text ? self.encode(text) : '<span class="sr-only">' + id + '</span>') +
+						(text ? self.encode(text) : '<span class="sr-only">' + label + '</span>') +
 					'</button>' +
 				'</div>'
 			);
@@ -35569,6 +35570,7 @@ define("tinymce/ui/ComboBox", [
 			}
 
 			icon = settings.icon;
+			var label = icon;
 			if (icon && icon != 'caret') {
 				icon = prefix + 'ico ' + prefix + 'i-' + settings.icon;
 			}
@@ -35579,8 +35581,8 @@ define("tinymce/ui/ComboBox", [
 				openBtnHtml = (
 					'<div id="' + id + '-open" class="' + prefix + 'btn ' + prefix + 'open" tabIndex="-1" role="button">' +
 						'<button id="' + id + '-action" type="button" hidefocus="1" tabindex="-1">' +
-							(icon != 'caret' ? '<i class="' + icon + '"></i>' : '<i class="' + prefix + 'caret"></i><span class="sr-only">' + id + '</span>') +
-							(text ? (icon ? ' ' : '') + text : '<span class="sr-only">' + id + '</span>') +
+							(icon != 'caret' ? '<i class="' + icon + '"></i>' : '<i class="' + prefix + 'caret"></i>') +
+							(text ? (icon ? ' ' : '') + text : '<span class="sr-only">' + label + '</span>') +
 						'</button>' +
 					'</div>'
 				);
@@ -35907,16 +35909,16 @@ define("tinymce/ui/ColorButton", [
 			var self = this, id = self._id, prefix = self.classPrefix, text = self.state.get('text');
 			var icon = self.settings.icon ? prefix + 'ico ' + prefix + 'i-' + self.settings.icon : '';
 			var image = self.settings.image ? ' style="background-image: url(\'' + self.settings.image + '\')"' : '';
-
+			var label = self.settings.icon ? self.settings.icon : id;
 			return (
 				'<div id="' + id + '" class="' + self.classes + '" role="button" tabindex="-1" aria-haspopup="true">' +
 					'<button role="presentation" hidefocus="1" type="button" tabindex="-1">' +
 						(icon ? '<i class="' + icon + '"' + image + '></i>' : '') +
 						'<span id="' + id + '-preview" class="' + prefix + 'preview"></span>' +
-						(text ? (icon ? ' ' : '') + (text) : '<span class="sr-only">' + id + '</span>') +
+						(text ? (icon ? ' ' : '') + (text) : '<span class="sr-only">' + label + '</span>') +
 					'</button>' +
 					'<button type="button" class="' + prefix + 'open" hidefocus="1" tabindex="-1">' +
-						' <i class="' + prefix + 'caret"></i><span class="sr-only">' + id + '</span>' +
+						' <i class="' + prefix + 'caret"></i><span class="sr-only">menu</span>' +
 					'</button>' +
 				'</div>'
 			);
@@ -38589,6 +38591,7 @@ define("tinymce/ui/MenuButton", [
 				image = '';
 			}
 
+			var label = self.settings.icon;
 			icon = self.settings.icon ? prefix + 'ico ' + prefix + 'i-' + icon : '';
 
 			self.aria('role', self.parent() instanceof MenuBar ? 'menuitem' : 'button');
@@ -38597,8 +38600,8 @@ define("tinymce/ui/MenuButton", [
 				'<div id="' + id + '" class="' + self.classes + '" tabindex="-1" aria-labelledby="' + id + '">' +
 					'<button id="' + id + '-open" role="presentation" type="button" tabindex="-1">' +
 						(icon ? '<i class="' + icon + '"' + image + '></i>' : '') +
-						(text ? (icon ? '\u00a0' : '') + self.encode(text) : '<span class="sr-only">' + id + '</span>') +
-						' <i class="' + prefix + 'caret"></i><span class="sr-only">' + id + '</span>' +
+						(text ? (icon ? '\u00a0' : '') + self.encode(text) : '<span class="sr-only">' + label + '</span>') +
+						' <i class="' + prefix + 'caret"></i>' +
 					'</button>' +
 				'</div>'
 			);
@@ -39890,18 +39893,19 @@ define("tinymce/ui/SplitButton", [
 				image = '';
 			}
 
+			var label = self.settings.icon ? self.settings.icon : id;
 			icon = self.settings.icon ? prefix + 'ico ' + prefix + 'i-' + icon : '';
 
 			return (
 				'<div id="' + id + '" class="' + self.classes + '" role="button" tabindex="-1">' +
 					'<button type="button" hidefocus="1" tabindex="-1">' +
 						(icon ? '<i class="' + icon + '"' + image + '></i>' : '') +
-						(text ? (icon ? ' ' : '') + text : '<span class="sr-only">' + id + '</span>') +
+						(text ? (icon ? ' ' : '') + text : '<span class="sr-only">' + label + '</span>') +
 					'</button>' +
 					'<button type="button" class="' + prefix + 'open" hidefocus="1" tabindex="-1">' +
 						//(icon ? '<i class="' + icon + '"></i>' : '') +
-						(self._menuBtnText ? (icon ? '\u00a0' : '') + self._menuBtnText : '<span class="sr-only">' + id + '</span>') +
-						' <i class="' + prefix + 'caret"></i><span class="sr-only">' + id + '</span>' +
+						(self._menuBtnText ? (icon ? '\u00a0' : '') + self._menuBtnText : '<span class="sr-only">' + label + '</span>') +
+						' <i class="' + prefix + 'caret"></i>' +
 					'</button>' +
 				'</div>'
 			);
