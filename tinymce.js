@@ -39810,7 +39810,8 @@ define("tinymce/ui/Button", [
 		 */
 		renderHtml: function() {
 			var self = this, id = self._id, prefix = self.classPrefix;
-			var icon = self.state.get('icon'), image, text = self.state.get('text'), textHtml = '';
+			var icon = self.state.get('icon'), image, text = self.state.get('text'),
+				textHtml = '<span class="sr-only">' + id + '</span>';
 
 			image = self.settings.image;
 			if (image) {
@@ -40705,7 +40706,7 @@ define("tinymce/ui/ColorButton", [
 			var self = this, id = self._id, prefix = self.classPrefix, text = self.state.get('text');
 			var icon = self.settings.icon ? prefix + 'ico ' + prefix + 'i-' + self.settings.icon : '';
 			var image = self.settings.image ? ' style="background-image: url(\'' + self.settings.image + '\')"' : '',
-				textHtml = '';
+				textHtml = '<span class="sr-only">' + id + '</span>';
 
 			if (text) {
 				self.classes.add('btn-has-text');
@@ -43368,7 +43369,7 @@ define("tinymce/ui/MenuButton", [
 		renderHtml: function() {
 			var self = this, id = self._id, prefix = self.classPrefix;
 			var icon = self.settings.icon, image, text = self.state.get('text'),
-				textHtml = '';
+				textHtml = '<span class="sr-only">' + id + '</span>';
 
 			image = self.settings.image;
 			if (image) {
