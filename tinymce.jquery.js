@@ -38362,8 +38362,8 @@ define("tinymce/ui/ComboBox", [
 				openBtnHtml = (
 					'<div id="' + id + '-open" class="' + prefix + 'btn ' + prefix + 'open" tabIndex="-1" role="button">' +
 						'<button id="' + id + '-action" type="button" hidefocus="1" tabindex="-1">' +
-							(icon != 'caret' ? '<i class="' + icon + '"></i>' : '<i class="' + prefix + 'caret"></i>') +
-							(text ? (icon ? ' ' : '') + text : '') +
+							(icon != 'caret' ? '<i class="' + icon + '"></i>' : '<i class="' + prefix + 'caret"></i><span class="sr-only">' + id + '</span>') +
+							(text ? (icon ? ' ' : '') + text : '<span class="sr-only">' + id + '</span>') +
 						'</button>' +
 					'</div>'
 				);
@@ -38705,7 +38705,7 @@ define("tinymce/ui/ColorButton", [
 						textHtml +
 					'</button>' +
 					'<button type="button" class="' + prefix + 'open" hidefocus="1" tabindex="-1">' +
-						' <i class="' + prefix + 'caret"></i>' +
+						' <i class="' + prefix + 'caret"></i><span class="sr-only">' + id + '</span>' +
 					'</button>' +
 				'</div>'
 			);
@@ -41716,7 +41716,7 @@ define("tinymce/ui/MenuItem", [
 					(text !== '-' ? '<i class="' + icon + '"' + image + '></i>\u00a0' : '') +
 					(text !== '-' ? '<span id="' + id + '-text" class="' + prefix + 'text">' + text + '</span>' : '') +
 					(shortcut ? '<div id="' + id + '-shortcut" class="' + prefix + 'menu-shortcut">' + shortcut + '</div>' : '') +
-					(settings.menu ? '<div class="' + prefix + 'caret"></div>' : '') +
+					(settings.menu ? '<div class="' + prefix + 'caret"></div><span class="sr-only">' + id + '</span>' : '') +
 				'</div>'
 			);
 		},
@@ -42573,7 +42573,7 @@ define("tinymce/ui/SplitButton", [
 		renderHtml: function() {
 			var self = this, id = self._id, prefix = self.classPrefix, image;
 			var icon = self.state.get('icon'), text = self.state.get('text'),
-				textHtml = '';
+				textHtml = '<span class="sr-only">' + id + '</span>';
 
 			image = self.settings.image;
 			if (image) {
@@ -42604,8 +42604,8 @@ define("tinymce/ui/SplitButton", [
 					'</button>' +
 					'<button type="button" class="' + prefix + 'open" hidefocus="1" tabindex="-1">' +
 						//(icon ? '<i class="' + icon + '"></i>' : '') +
-						(self._menuBtnText ? (icon ? '\u00a0' : '') + self._menuBtnText : '') +
-						' <i class="' + prefix + 'caret"></i>' +
+						(self._menuBtnText ? (icon ? '\u00a0' : '') + self._menuBtnText : '<span class="sr-only">' + id + '</span>') +
+						' <i class="' + prefix + 'caret"></i><span class="sr-only">' + id + '</span>' +
 					'</button>' +
 				'</div>'
 			);
