@@ -33028,7 +33028,7 @@ define("tinymce/ui/Button", [
 				'<div id="' + id + '" class="' + self.classes + '" tabindex="-1" aria-labelledby="' + id + '">' +
 					'<button role="presentation" type="button" tabindex="-1">' +
 						(icon ? '<i class="' + icon + '"' + image + '></i>' : '') +
-						(text ? self.encode(text) : '') +
+						(text ? self.encode(text) : '<span class="sr-only">' + id + '</span>') +
 					'</button>' +
 				'</div>'
 			);
@@ -33897,7 +33897,7 @@ define("tinymce/ui/ColorButton", [
 					'<button role="presentation" hidefocus="1" type="button" tabindex="-1">' +
 						(icon ? '<i class="' + icon + '"' + image + '></i>' : '') +
 						'<span id="' + id + '-preview" class="' + prefix + 'preview"></span>' +
-						(text ? (icon ? ' ' : '') + (text) : '') +
+						(text ? (icon ? ' ' : '') + (text) : '<span class="sr-only">' + self._id + '</span>') +
 					'</button>' +
 					'<button type="button" class="' + prefix + 'open" hidefocus="1" tabindex="-1">' +
 						' <i class="' + prefix + 'caret"></i>' +
@@ -36581,7 +36581,7 @@ define("tinymce/ui/MenuButton", [
 				'<div id="' + id + '" class="' + self.classes + '" tabindex="-1" aria-labelledby="' + id + '">' +
 					'<button id="' + id + '-open" role="presentation" type="button" tabindex="-1">' +
 						(icon ? '<i class="' + icon + '"' + image + '></i>' : '') +
-						(text ? (icon ? '\u00a0' : '') + self.encode(text) : '') +
+						(text ? (icon ? '\u00a0' : '') + self.encode(text) : '<span class="sr-only">' + id + '</span>') +
 						' <i class="' + prefix + 'caret"></i>' +
 					'</button>' +
 				'</div>'
