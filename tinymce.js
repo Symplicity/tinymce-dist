@@ -39810,8 +39810,8 @@ define("tinymce/ui/Button", [
 		 */
 		renderHtml: function() {
 			var self = this, id = self._id, prefix = self.classPrefix;
-			var icon = self.state.get('icon'), image, text = self.state.get('text'),
-				textHtml = '<span class="sr-only">' + id + '</span>';
+			var icon = self.state.get('icon'), image, text = self.state.get('text');
+			var textHtml = '<span class="sr-only">' + icon + '</span>';
 
 			image = self.settings.image;
 			if (image) {
@@ -40368,6 +40368,7 @@ define("tinymce/ui/ComboBox", [
 			}
 
 			icon = settings.icon;
+			var label = icon;
 			if (icon && icon != 'caret') {
 				icon = prefix + 'ico ' + prefix + 'i-' + settings.icon;
 			}
@@ -40378,8 +40379,8 @@ define("tinymce/ui/ComboBox", [
 				openBtnHtml = (
 					'<div id="' + id + '-open" class="' + prefix + 'btn ' + prefix + 'open" tabIndex="-1" role="button">' +
 						'<button id="' + id + '-action" type="button" hidefocus="1" tabindex="-1">' +
-							(icon != 'caret' ? '<i class="' + icon + '"></i>' : '<i class="' + prefix + 'caret"></i><span class="sr-only">' + id + '</span>') +
-							(text ? (icon ? ' ' : '') + text : '<span class="sr-only">' + id + '</span>') +
+							(icon != 'caret' ? '<i class="' + icon + '"></i>' : '<i class="' + prefix + 'caret"></i>') +
+							(text ? (icon ? ' ' : '') + text : '<span class="sr-only">' + label + '</span>') +
 						'</button>' +
 					'</div>'
 				);
@@ -40705,8 +40706,9 @@ define("tinymce/ui/ColorButton", [
 		renderHtml: function() {
 			var self = this, id = self._id, prefix = self.classPrefix, text = self.state.get('text');
 			var icon = self.settings.icon ? prefix + 'ico ' + prefix + 'i-' + self.settings.icon : '';
+			var label = self.settings.icon ? self.settings.icon : id;
 			var image = self.settings.image ? ' style="background-image: url(\'' + self.settings.image + '\')"' : '',
-				textHtml = '<span class="sr-only">' + id + '</span>';
+				textHtml = '<span class="sr-only">' + label + '</span>';
 
 			if (text) {
 				self.classes.add('btn-has-text');
@@ -40721,7 +40723,7 @@ define("tinymce/ui/ColorButton", [
 						textHtml +
 					'</button>' +
 					'<button type="button" class="' + prefix + 'open" hidefocus="1" tabindex="-1">' +
-						' <i class="' + prefix + 'caret"></i><span class="sr-only">' + id + '</span>' +
+						' <i class="' + prefix + 'caret"></i><span class="sr-only">menu</span>' +
 					'</button>' +
 				'</div>'
 			);
@@ -43368,8 +43370,8 @@ define("tinymce/ui/MenuButton", [
 		 */
 		renderHtml: function() {
 			var self = this, id = self._id, prefix = self.classPrefix;
-			var icon = self.settings.icon, image, text = self.state.get('text'),
-				textHtml = '<span class="sr-only">' + id + '</span>';
+			var icon = self.settings.icon, image, text = self.state.get('text');
+			var textHtml = '<span class="sr-only">' + icon + '</span>';
 
 			image = self.settings.image;
 			if (image) {
@@ -44588,8 +44590,9 @@ define("tinymce/ui/SplitButton", [
 		 */
 		renderHtml: function() {
 			var self = this, id = self._id, prefix = self.classPrefix, image;
+			var label = self.settings.icon ? self.settings.icon : id;
 			var icon = self.state.get('icon'), text = self.state.get('text'),
-				textHtml = '<span class="sr-only">' + id + '</span>';
+				textHtml = '<span class="sr-only">' + label + '</span>';
 
 			image = self.settings.image;
 			if (image) {
@@ -44620,8 +44623,8 @@ define("tinymce/ui/SplitButton", [
 					'</button>' +
 					'<button type="button" class="' + prefix + 'open" hidefocus="1" tabindex="-1">' +
 						//(icon ? '<i class="' + icon + '"></i>' : '') +
-						(self._menuBtnText ? (icon ? '\u00a0' : '') + self._menuBtnText : '<span class="sr-only">' + id + '</span>') +
-						' <i class="' + prefix + 'caret"></i><span class="sr-only">' + id + '</span>' +
+						(self._menuBtnText ? (icon ? '\u00a0' : '') + self._menuBtnText : '<span class="sr-only">' + label + '</span>') +
+						' <i class="' + prefix + 'caret"></i>' +
 					'</button>' +
 				'</div>'
 			);
